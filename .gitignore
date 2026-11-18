@@ -1,0 +1,20 @@
+# Virtual environment
+venv/
+.venv/
+
+# Environment variables & secrets
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local SQLite (if ever generated)
+*.sqlite3
+
+# Uploaded user media files
+media/
+
+# VS Code settings
+.vscode/
