@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}My Profile | CalmStage{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+    <div class="bg-teal-800 h-24"></div>
+    <div class="px-8 pb-8">
+        <div class="flex justify-between items-end -mt-12 mb-6">
+            {% if profile_user.profile_photo %}
+                <img src="{{ profile_user.profile_photo.url }}" alt="Profile Photo"
+                     class="w-24 h-24 rounded-full object-cover border-4 border-white shadow">
+            {% else %}
+                <div class="w-24 h-24 rounded-full bg-amber-500 text-teal-950 font-extrabold text-3xl flex items-center justify-center border-4 border-white shadow">
+                    {{ profile_user.username|slice:":1"|upper }}
+                </div>
+            {% endif %}
+
+            <a href="{% url 'profile_edit' %}" class="bg-teal-800 hover:bg-teal-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">
+                Edit Profile
+            </a>
+        </div>
+
+        <h1 class="text-2xl font-bold text-slate-800">
+            {{ profile_user.first_name }} {{ profile_user.last_name }}
+        </h1>
+        <p class="text-sm text-teal-700 font-semibold">@{{ profile_user.username }} &bull; {{ profile_user.get_role_display }}</p>
+
+        <div class="mt-6 border-t border-slate-100 pt-5 space-y-3 text-sm">
+            <div class="flex justify-between">
+                <span class="text-slate-500">Email Address:</span>
+                <span class="font-medium text-slate-800">{{ profile_user.email }}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-slate-500">Contact Number:</span>
+                <span class="font-medium text-slate-800">{{ profile_user.contact_number|default:"Not provided" }}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-slate-500">Program / Department:</span>
+                <span class="font-medium text-slate-800">{{ profile_user.program_or_department|default:"Not provided" }}</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-slate-500">Member Since:</span>
+                <span class="font-medium text-slate-800">{{ profile_user.date_joined|date:"F j, Y" }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

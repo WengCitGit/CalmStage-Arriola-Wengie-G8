@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Access Denied | CalmStage{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto text-center bg-white p-8 rounded-xl border border-red-200 shadow-sm mt-10">
+    <div class="text-red-600 font-extrabold text-5xl mb-3">403</div>
+    <h1 class="text-xl font-bold text-slate-800 mb-2">Unauthorized Role Access</h1>
+    <p class="text-sm text-slate-600 mb-6">
+        Your current role (<strong>{{ user.get_role_display }}</strong>) does not have permission to view this dashboard.
+    </p>
+    <a href="{% url 'dashboard' %}" class="inline-block bg-teal-800 hover:bg-teal-700 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition">
+        Return to My Dashboard
+    </a>
+</div>
+{% endblock %}

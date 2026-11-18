@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Student Dashboard | CalmStage{% endblock %}
+
+{% block content %}
+<div class="bg-teal-900 text-white rounded-xl p-6 mb-6 flex justify-between items-center">
+    <div>
+        <span class="text-xs uppercase tracking-wider bg-teal-700 px-2.5 py-1 rounded-full font-semibold">
+            Role: {{ user.get_role_display }}
+        </span>
+        <h1 class="text-2xl font-bold mt-2">Hello, {{ user.first_name|default:user.username }}!</h1>
+        <p class="text-teal-100 text-sm mt-1">Ready for your next academic presentation? Take a moment to center yourself.</p>
+    </div>
+    <a href="{% url 'profile' %}" class="bg-amber-500 hover:bg-amber-400 text-teal-950 font-semibold px-4 py-2 rounded-lg text-sm transition">
+        View Profile
+    </a>
+</div>
+
+<h2 class="text-lg font-bold text-slate-800 mb-3">Your Coping Toolkit (Phase 2 Modules)</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    {% for tool in coping_tools %}
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+                <span class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded">
+                    {{ tool.badge }}
+                </span>
+                <h3 class="text-lg font-bold text-slate-800 mt-3">{{ tool.title }}</h3>
+                <p class="text-sm text-slate-600 mt-1">{{ tool.desc }}</p>
+            </div>
+            <button disabled class="mt-4 w-full bg-slate-100 text-slate-400 font-medium py-2 rounded-lg text-sm cursor-not-allowed">
+                Module Ready in Phase 2
+            </button>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
